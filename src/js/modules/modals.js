@@ -9,7 +9,7 @@ function closeModal(ModalSelector) {
   const modal = document.querySelector(ModalSelector);
   modal.classList.add('modal__hide');
   modal.classList.remove('modal__show');
-  document.body.style.overflow = '';
+  document.body.style.overflow = 'unset';
 };
 
 function modals(TriggerSelector, ModalSelector) {
@@ -41,10 +41,33 @@ function modals(TriggerSelector, ModalSelector) {
   };
 
   window.addEventListener('scroll', showModalByScroll);
-}
+};
+
+function showThanksModal(message, ModalSelector) {
+  const prevModalDialog = document.querySelector('.modal__dialog');
+
+  prevModalDialog.classList.add('modal__hide');
+  openModal(ModalSelector);
+
+  const thanksModal = document.createElement('div');
+  thanksModal.classList.add('modal__dialog');
+  thanksModal.innerHTML = `
+    <div class = "modal__content">
+      <div class = "modal__title">${message}</div>
+    </div>
+    `;
+
+  document.querySelector('.modal').append(thanksModal);
+  setTimeout(() => {
+    thanksModal.remove();
+    prevModalDialog.classList.add('modal__show');
+    prevModalDialog.classList.remove('modal__hide');
+    closeModal(ModalSelector);
+  }, 3500);
+};
 
 export default modals;
+
 export {
-  closeModal,
-  openModal
+  showThanksModal
 };

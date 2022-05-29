@@ -3,13 +3,22 @@
 import "../scss/style.scss";
 import slider from './modules/slider';
 import tabs from './modules/tabs';
-import hrefs from './modules/hrefs';
 import modals from './modules/modals';
 import forms from './modules/forms';
 
 document.addEventListener(('DOMContentLoaded'), () => {
-  slider('.slide', '.slider-inner', '.slider-wrapper', '.dot', 'true');
+
+  slider({
+    sliderContainerSelector: '.slider',
+    sliderWrapperSelector: '.slider-wrapper',
+    sliderInnerSelector: '.slider-inner',
+    sliderItemsSelector: '.slide',
+    dotsSelector: '.dot',
+    automationTrigger: true
+  });
+
   tabs({
+    tabsContainerSelector: '.catalog',
     tabsTriggerSelector: '.tab',
     tabsButtonSelector: '.catalog__tab',
     tabsContentSelector: '.catalog__content',
@@ -19,8 +28,7 @@ document.addEventListener(('DOMContentLoaded'), () => {
     itemsNextSelector: '.catalog-item__link',
     itemsPrevSelector: '.catalog-item__back'
   });
-  hrefs();
-  modals('.button_main', '.modal');
+  modals('.button__main', '.modal');
   forms('.modal');
 
 });

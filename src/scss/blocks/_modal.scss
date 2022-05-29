@@ -11,7 +11,17 @@
     &__dialog {
         max-width: 380px;
         margin: 100px auto;
-        // padding-left: 40px;
+    }
+    &__content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100px;
+        background-color: burlywood;
+        border-radius: 10px;
+    }
+    &__title {
+        height: 20px;
     }
     &__close {
         position: absolute;

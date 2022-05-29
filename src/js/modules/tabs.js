@@ -1,4 +1,5 @@
 function tabs({
+  tabsContainerSelector,
   tabsTriggerSelector,
   tabsButtonSelector,
   tabsContentSelector,
@@ -7,28 +8,27 @@ function tabs({
   itemsListContentSelector,
   itemsNextSelector,
   itemsPrevSelector,
-  ////////////
-  tabsInnerButton = 'catalog__tab_active',
-  tabsInnerContent = 'catalog__content_active',
-  tabsInnerContentDescr = 'catalog-item__content_active',
-  tabsInnerContentList = 'catalog-item__list_active'
+  tabsInnerButton = 'catalog__tab__active',
+  tabsInnerContent = 'catalog__content__active',
+  tabsInnerContentDescr = 'catalog-item__content__active',
+  tabsInnerContentList = 'catalog-item__list__active'
 
 }) {
   /// TABS
-  //console.log(tabsInnerContent);
 
-  const tabsTrigger = document.querySelectorAll(tabsTriggerSelector),
-    tabsButton = document.querySelectorAll(tabsButtonSelector),
-    tabsContent = document.querySelectorAll(tabsContentSelector),
-    tabsParent = document.querySelector(tabsParentSelector),
-    itemsContent = document.querySelectorAll(itemsContentSelector),
-    itemsListContent = document.querySelectorAll(itemsListContentSelector),
-    itemsNext = document.querySelectorAll(itemsNextSelector),
-    itemsPrev = document.querySelectorAll(itemsPrevSelector);
+  const tabsContainer = document.querySelector(tabsContainerSelector),
+    tabsTrigger = tabsContainer.querySelectorAll(tabsTriggerSelector),
+    tabsButton = tabsContainer.querySelectorAll(tabsButtonSelector),
+    tabsContent = tabsContainer.querySelectorAll(tabsContentSelector),
+    tabsParent = tabsContainer.querySelector(tabsParentSelector),
+    itemsContent = tabsContainer.querySelectorAll(itemsContentSelector),
+    itemsListContent = tabsContainer.querySelectorAll(itemsListContentSelector),
+    itemsNext = tabsContainer.querySelectorAll(itemsNextSelector),
+    itemsPrev = tabsContainer.querySelectorAll(itemsPrevSelector);
 
   tabsParent.addEventListener('click', (event) => {
     const target = event.target;
-    if (target && target.classList.contains(tabsTriggerSelector)) {
+    if (target && target.classList.contains(tabsTriggerSelector.slice(1, 4))) {
       tabsTrigger.forEach((item, i) => {
         if (target == item) {
           tabsContent.forEach((item, i) => {

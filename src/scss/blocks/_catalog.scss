@@ -30,7 +30,7 @@
         div {
             transform: skewX(25deg);
         }
-        &_active {
+        &__active {
             color: #ffffff;
             background-color: $color-button;
             border: none;
@@ -41,7 +41,7 @@
         justify-content: space-evenly;
         flex-wrap: wrap;
         margin-top: 60px;
-        &_active {
+        &__active {
             display: flex;
         }
     }
@@ -115,7 +115,7 @@
             margin-right: 0px;
             transform: translateX(-100%);
             transition: 0.5s all;
-            &_active {
+            &__active {
                 transform: translateX(0%);
                 margin-right: 20px;
             }
@@ -130,7 +130,7 @@
             padding-left: 19px;
             margin-bottom: 0;
             list-style-type: none;
-            &_active {
+            &__active {
                 transform: translateX(-100%);
                 margin-left: 0px;
             }
