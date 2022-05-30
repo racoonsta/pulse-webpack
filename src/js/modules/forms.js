@@ -10,7 +10,7 @@ function forms(ModalSelector) {
   const message = {
     loading: 'static/img/spinner.svg',
     success: 'Спасибо! Скоро свяжемся!',
-    failure: 'Ошибка!'
+    failure: 'Ошибка! \n Нужно собрать проект локально'
   };
 
   forms.forEach(item => {

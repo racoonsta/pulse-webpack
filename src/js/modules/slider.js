@@ -4,7 +4,7 @@
    sliderInnerSelector,
    sliderWrapperSelector,
    dotsSelector,
-   sliderAutomation
+   automationTrigger
  }) {
    /// SLIDER
    const sliderContainer = document.querySelector(sliderContainerSelector),
@@ -36,9 +36,9 @@
 
 
    // SLIDER AUTOMATION
-   if (sliderAutomation) {
+   if (automationTrigger) {
      const slider = document.querySelector(sliderContainerSelector),
-       sliderHeight = wrapperWidth.getComputedStyle(slider).height.slice(0, 3),
+       sliderHeight = window.getComputedStyle(slider).height.slice(0, 3),
        sliderYoffset = slider.getBoundingClientRect().top,
        sliderHeightFull = +sliderHeight + sliderYoffset;
 
