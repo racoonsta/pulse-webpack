@@ -1,6 +1,5 @@
 import {
-  openModal,
-  closeModal
+  showThanksModal
 } from './modals.js'
 
 function forms(ModalSelector) {
@@ -10,15 +9,15 @@ function forms(ModalSelector) {
 
   const message = {
     loading: 'static/img/spinner.svg',
-    success: 'Спасибо! Скоро свяжемся',
-    failure: 'Ошибка'
+    success: 'Спасибо! Скоро свяжемся!',
+    failure: 'Ошибка! \n Нужно собрать проект локально'
   };
 
   forms.forEach(item => {
     bindPostData(item);
   });
 
-  const postData = async (url, data) => {
+  const postData = async (url, data, form) => {
     const res = await fetch(url, {
       method: "POST",
       headers: {
@@ -26,14 +25,12 @@ function forms(ModalSelector) {
       },
       body: data
     });
-
     return await res.json();
   };
 
   function bindPostData(form) {
     form.addEventListener('submit', (event) => {
       event.preventDefault();
-
       const statusMessage = document.createElement('img');
       statusMessage.src = message.loading;
       statusMessage.style.cssText = `
@@ -44,49 +41,29 @@ function forms(ModalSelector) {
       form.append(statusMessage);
 
       const formData = new FormData(form);
-      const json = JSON.stringify(Object.fromEntries(formData.entries()));
+      const json = JSON.stringify(formData);
       const object = {};
 
       formData.forEach(function (value, key) {
         object[key] = value;
       });
 
-      postData('http://localhost:3000/api/post', json)
+      postData('http://localhost:3000/api/post', json, form)
         .then(data => {
           console.log(data);
-          showThanksModal(message.success);
+          showThanksModal(message.success, ModalSelector);
           statusMessage.remove();
         }).catch((error) => {
           console.log(error);
-          showThanksModal(message.failure);
+          showThanksModal(message.failure, ModalSelector);
         }).finally(() => {
           form.reset();
         })
+    }, {
+      'once': true
     });
   };
 
-  function showThanksModal(message) {
-    const prevModalDialog = document.querySelector('.modal__dialog');
-
-    prevModalDialog.classList.add('modal__hide');
-    openModal(ModalSelector);
-
-    const thanksModal = document.createElement('div');
-    thanksModal.classList.add('modal__dialog');
-    thanksModal.innerHTML = `
-      <div class = "modal__content" style="background-color: burlywood; border-radius: 10px; display: flex; height: 100px; align-items: center; justify-content: center;">
-        <div class = "modal__title" style="height: 20px">${message}</div>
-      </div>
-      `;
-
-    document.querySelector('.modal').append(thanksModal);
-    setTimeout(() => {
-      thanksModal.remove();
-      prevModalDialog.classList.add('modal__show');
-      prevModalDialog.classList.remove('modal__hide');
-      closeModal(ModalSelector);
-    }, 3500);
-  }
 }
 
 export default forms;

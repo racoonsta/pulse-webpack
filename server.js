@@ -6,7 +6,7 @@ const cors = require("cors");
 app.use(cors());
 
 app.get("/api/hello", (req, res) => { // отвечает за принятие GET запроса
-  res.send("GET запрос к странице"); // ответ на /api-hello
+  res.send("GET query"); // ответ на /api-hello
 });
 
 // POST method route
@@ -20,5 +20,5 @@ app.post("/api/post", (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Порт открыт: ${port}`);
+  console.log(`Port open: ${port}`);
 });

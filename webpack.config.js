@@ -1,8 +1,7 @@
 const path = require("path");
 const webpack = require("webpack");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const HTMLplugin = require("webpack-html-plugin");
-const HTMLloader = require("html-loader");
+const CopyPlugin = require("copy-webpack-plugin");
 
 module.exports = {
   mode: "development", // 'production'
@@ -50,6 +49,15 @@ module.exports = {
   plugins: [
     new MiniCssExtractPlugin({
       filename: "main.css",
+    }),
+    new CopyPlugin({
+      patterns: [{
+        from: "src/static",
+        to: "../dist/static"
+      }, {
+        from: "src/index.html",
+        to: "../dist/index.html"
+      }],
     }),
   ],
   ///

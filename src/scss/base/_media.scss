@@ -17,13 +17,14 @@
     }
     .header {
         flex-direction: column;
+        &__official {
+            margin-top: 20px;
+        }
+        &__contacts {
+            margin-top: 20px;
+        }
     }
-    .header__official {
-        margin-top: 20px;
-    }
-    .header__contacts {
-        margin-top: 20px;
-    }
+
     .promo__wrapper {
         display: flex;
         align-items: center;
@@ -43,7 +44,7 @@
         flex-direction: column;
     }
     .consult {
-        .title_left {
+        .title__left {
             font-size: 27px;
         }
     }
@@ -85,7 +86,7 @@
         .container {
             max-width: 80%;
         }
-        .title_left {
+        .title__left {
             font-size: 24px;
         }
         &__descr {
@@ -101,7 +102,7 @@
         .title {
             font-size: 26px;
         }
-        &-item {
+        &__item {
             flex-direction: column;
             text-align: center;
         }
